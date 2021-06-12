@@ -65,7 +65,7 @@ def main():
 
     generate_locations()
 
-    #print_locations()
+    print_locations()
 
     analyze_tiles()
 
