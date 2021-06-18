@@ -6,3 +6,9 @@ class Tile:
 
     def __repr__(self):
         return f"({self.dice_number}, {self.resource_type})"
+
+    def __lt__(self, other):
+        return self.dice_number < other.dice_number
+
+    def __gt__(self, other):
+        return self.dice_number > other.dice_number

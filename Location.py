@@ -1,9 +1,9 @@
 class Location:
     # initialize with list of locations
     def __init__(self, *args):
-        self.locations = []
+        self.location_tiles = []
         for arg in args:
-            self.locations.append(arg)
+            self.location_tiles.append(arg)
 
     def __repr__(self):
-        return str(self.locations)
+        return str(self.location_tiles)
