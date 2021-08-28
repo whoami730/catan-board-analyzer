@@ -17,7 +17,7 @@ def main():
     print(location1)
     """
 
-    board1 = Board('board.csv')
+    board1 = Board('./src/board.csv')
     board1.analyze_tiles()
     board1.analyze_locations()
     board1.display_GUI()

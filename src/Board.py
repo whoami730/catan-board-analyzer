@@ -193,11 +193,11 @@ class Board:
         
         # initialize card images
         card_images = {
-            "brick": tk.PhotoImage(file = "./Icons/card_brick.png"),
-            "grain": tk.PhotoImage(file = "./Icons/card_grain.png"),
-            "lumber": tk.PhotoImage(file = "./Icons/card_lumber.png"),
-            "ore": tk.PhotoImage(file = "./Icons/card_ore.png"),
-            "wool": tk.PhotoImage(file = "./Icons/card_wool.png")
+            "brick": tk.PhotoImage(file = "./resources/card_brick.png"),
+            "grain": tk.PhotoImage(file = "./resources/card_grain.png"),
+            "lumber": tk.PhotoImage(file = "./resources/card_lumber.png"),
+            "ore": tk.PhotoImage(file = "./resources/card_ore.png"),
+            "wool": tk.PhotoImage(file = "./resources/card_wool.png")
         }
 
         # display each resource and its relative rarity to baseline
