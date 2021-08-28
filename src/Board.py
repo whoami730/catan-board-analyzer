@@ -1,3 +1,7 @@
+# Joseph Wang
+# 6/18/2021
+# Board class for OOP Catan board analyzer
+
 import csv
 import tkinter as tk
 

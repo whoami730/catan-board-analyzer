@@ -1,3 +1,7 @@
+# Joseph Wang
+# 2/17/2021
+# Catan board analyzer built in Python
+
 import tkinter as tk
 import csv
 

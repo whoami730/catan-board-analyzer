@@ -1,3 +1,7 @@
+# Joseph Wang
+# 6/18/2021
+# Constants class for OOP Catan board analyzer
+
 class Constants:
     # dictionary of roll number to dice chance (out of 36), so for 5 the chance is 4/36
     dice_chance = {
@@ -14,6 +18,7 @@ class Constants:
         12: 1
     }
 
+    # types of tiles
     tile_types = {
         "b": "brick",
         "g": "grain",

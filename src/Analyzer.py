@@ -1,3 +1,7 @@
+# Joseph Wang
+# 6/18/2021
+# Driver program for OOP Catan board analyzer
+
 from Tile import Tile
 from Location import Location
 from Board import Board

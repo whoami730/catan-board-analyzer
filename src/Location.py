@@ -1,3 +1,7 @@
+# Joseph Wang
+# 6/18/2021
+# Location class for OOP Catan board analyzer
+
 class Location:
     # initialize with list of locations
     def __init__(self, *args):

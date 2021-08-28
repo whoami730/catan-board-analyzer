@@ -1,3 +1,7 @@
+# Joseph Wang
+# 6/18/2021
+# Tile class for OOP Catan board analyzer
+
 class Tile:
     # initialize with instance variables dice number and resource type
     def __init__(self, dice_number, resource_type):
