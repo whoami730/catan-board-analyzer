@@ -253,11 +253,11 @@ def display_GUI(locations_by_resources):
     
     # initialize card images
     card_images = {
-        "brick": tk.PhotoImage(file = "../Icons/card_brick.png"),
-        "grain": tk.PhotoImage(file = "../Icons/card_grain.png"),
-        "lumber": tk.PhotoImage(file = "../Icons/card_lumber.png"),
-        "ore": tk.PhotoImage(file = "../Icons/card_ore.png"),
-        "wool": tk.PhotoImage(file = "../Icons/card_wool.png")
+        "brick": tk.PhotoImage(file = "./Icons/card_brick.png"),
+        "grain": tk.PhotoImage(file = "./Icons/card_grain.png"),
+        "lumber": tk.PhotoImage(file = "./Icons/card_lumber.png"),
+        "ore": tk.PhotoImage(file = "./Icons/card_ore.png"),
+        "wool": tk.PhotoImage(file = "./Icons/card_wool.png")
     }
 
     # display each resource and its relative rarity to baseline
