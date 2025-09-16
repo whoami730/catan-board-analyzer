@@ -4,13 +4,19 @@
 
 import csv
 import tkinter as tk
+from typing import override
 
 from Tile import Tile
 from Location import Location
 from Constants import Constants
 
 class Board:
-    def __init__(self, board_location):
+    tiles: list[list[Tile]]
+    locations: list[list[Location]]
+    locations_by_resources: list[tuple[int, list[Tile]]]
+    resource_rarity_percent: dict[str, float]
+
+    def __init__(self, board_location: str):
         # get tiles from csv file
         self.tiles = []
 
@@ -20,10 +26,10 @@ class Board:
             reader = csv.reader(board_file)
 
             # skip header line
-            next(reader)
+            _ = next(reader)
 
             # initialize variables
-            tiles_row = []
+            tiles_row: list[Tile] = []
 
             for tile in reader:
                 # for '0' character, start new tiles row
@@ -113,6 +119,10 @@ class Board:
             # add final edge location
             self.locations[locations_row].append(Location(self.tiles[row1][tile - 1]))
 
+        self.locations_by_resources = []
+        self.resource_rarity_percent = {}
+
+    @override
     def __repr__(self):
         repr = ""
         # print tiles
@@ -163,9 +173,9 @@ class Board:
 
         # loop through resources and calculate relative resource rarity to baseline
         for resource, chance in resource_rarity.items():
-            self.resource_rarity_percent[resource] = round(chance / (Constants.resource_amounts[resource] * Constants.average_tile_chance) * 100, 1)
+            self.resource_rarity_percent[resource] = round(chance / (Constants.resource_amounts[resource] * Constants.average_tile_chance), ndigits=2)
 
-    def analyze_locations(self):
+    def analyze_locations(self, use_resource_importance: bool = False):
         # initialize variables
         self.locations_by_resources = []
 
@@ -174,14 +184,14 @@ class Board:
 
             for location in locations_row:
 
-                location_chance = 0
+                location_value = 0
 
                 # loop through each tile for each location, adding up the total location chance
                 for tile in location.location_tiles:
-                    location_chance = location_chance + Constants.dice_chance[tile.dice_number]
+                    location_value = location_value + Constants.dice_chance[tile.dice_number] * (Constants.resource_importance[tile.resource_type] if use_resource_importance else 1)
                 
                 # add location with total location chance to new list in format [9, (3, 'grain'), (11, 'ore'), (6, 'wool')]
-                self.locations_by_resources.append([location_chance] + location.location_tiles)
+                self.locations_by_resources.append((round(location_value),  location.location_tiles))
         
         # sort locations by chance in descending order
         self.locations_by_resources.sort(reverse=True)
@@ -205,22 +215,20 @@ class Board:
         for resource, percent in self.resource_rarity_percent.items():
             if resource != "desert":
                 tk.Label(window, image = card_images[resource]).grid(row=i, column=0)
-                tk.Label(window, text = str(percent) + '%', font = "18").grid(row=i, column=1)
+                tk.Label(window, text = str(percent), font = "18").grid(row=i, column=1)
                 i = i + 1
 
         # output locations
         print()
 
         # output top locations by resources
-        for i, location in enumerate(self.locations_by_resources):
-            if location[0] >= 10:
-                print(location)
-
+        for i, (score, tiles) in enumerate(self.locations_by_resources):
+            if score >= 10:
                 # print resource count
-                tk.Label(window, text = location[0], font = "18").grid(row=i, column=3)
+                tk.Label(window, text = score, font = "18").grid(row=i, column=3)
 
                 # print relevant tiles for location
-                for j, tile in enumerate(location[1:]):
+                for j, tile in enumerate(tiles):
                     tk.Label(window, text = tile.dice_number, image = card_images[tile.resource_type], compound = 'center', font = "18").grid(row=i, column=j+4)
         
         window.mainloop()

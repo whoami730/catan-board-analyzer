@@ -4,7 +4,7 @@
 
 class Constants:
     # dictionary of roll number to dice chance (out of 36), so for 5 the chance is 4/36
-    dice_chance = {
+    dice_chance: dict[int, int] = {
         0: 0,
         2: 1,
         3: 2,
@@ -19,7 +19,7 @@ class Constants:
     }
 
     # types of tiles
-    tile_types = {
+    tile_types: dict[str, str] = {
         "b": "brick",
         "g": "grain",
         "l": "lumber",
@@ -29,7 +29,7 @@ class Constants:
     }
 
     # number of each resource tile on map
-    resource_amounts = {
+    resource_amounts: dict[str, int] = {
         "brick": 3,
         "grain": 4,
         "lumber": 4,
@@ -39,4 +39,14 @@ class Constants:
     }
 
     # average chance for each tile
-    average_tile_chance = (2 * 1 + 4 * 2 + 4 * 3 + 4 * 4 + 4 * 5) / 18
+    average_tile_chance: float = (2 * 1 + 4 * 2 + 4 * 3 + 4 * 4 + 4 * 5) / 18
+
+    # borrowed from https://www.boardgameanalysis.com/what-is-the-strategic-value-of-each-catan-resources/
+    resource_importance: dict[str, float] = {
+        "brick": 0.781,
+        "grain": 1.350,
+        "lumber": 0.781,
+        "ore": 1.329,
+        "wool": 0.760,
+        "desert": 0,
+    }
